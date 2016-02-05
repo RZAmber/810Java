@@ -7,8 +7,8 @@
  void setup(){
    size(800,600);
  }
- float x=2.0,y=2.0;
- float vx=+2.0,vy=+2.0;
+ int x=2,y=2;
+ int vx=+2,vy=+2;
  void draw(){
    background(0);
    fill(255,0,0);
@@ -26,6 +26,10 @@
      y=498;
      x=x-vx;
     }
+   if(x<=2){
+     x=2;
+     y=y-vy;
+   }
  }
          
        
