@@ -1,6 +1,6 @@
 /**
  *@author:Rui Zhang
- *Hw1:a processing program that draws a rectangle bounce off 4 walls
+ *Hw1a:a processing program that draws a rectangle bounce off 4 walls
  */
  
  
