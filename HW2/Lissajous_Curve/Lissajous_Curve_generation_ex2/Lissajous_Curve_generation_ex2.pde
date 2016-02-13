@@ -23,8 +23,8 @@ void draw() {
   fill(255,1);
   rect(0,0,width,height);
    
-  xpos = ((width/3) * a * sin(frame))+(width/2);
-  ypos = ((height/3)* b * cos(frame))+ (height/2);
+//  xpos = ((width/3) * a * sin(frame))+(width/2);
+//  ypos = ((height/3)* b * cos(frame))+ (height/2);
  
   xpos = width/3 * ax*sin(wx*radians(frame)+dx) + width/2;
   ypos = height/3 * ay*sin(wy*radians(frame)+dy) + height/2;

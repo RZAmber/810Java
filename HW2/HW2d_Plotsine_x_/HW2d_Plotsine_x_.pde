@@ -23,6 +23,7 @@ void draw(){
     for (int i = 3; i <= 9;i+=2){
       y+=1.0/i*sin(i*x);
     }
+//   point(x,y);
     line(prev_x,prev_y,x,y);  // instead of point() function
     prev_x=x;
     prev_y=y;
