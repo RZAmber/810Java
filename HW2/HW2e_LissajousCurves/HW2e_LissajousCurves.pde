@@ -8,6 +8,7 @@ void setup(){
   size(300,300);
   background(255);
   smooth();
+  //frameRate(100);
 }
 
 //increment both value by different amounts

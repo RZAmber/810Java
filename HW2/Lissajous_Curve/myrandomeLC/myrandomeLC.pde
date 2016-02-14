@@ -8,6 +8,7 @@ void setup(){
   size(300,300);
   background(255);
   smooth();
+ frameRate(200);
 }
 float wx = random(10);
 float wy = random(10);
