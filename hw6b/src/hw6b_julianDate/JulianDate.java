@@ -197,6 +197,7 @@ public class JulianDate {
 		return year+"."+mon+"."+day;
     }
     
+    
 	public static void main(String[] args) {
 		JulianDate d1 = new JulianDate(2016, 2, 29,13,45,40);
 		double JDN1 = d1.JDN();
