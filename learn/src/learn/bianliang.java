@@ -1,5 +1,5 @@
 package learn;
-
+// command + 斜杠 直接注释
 import java.util.ArrayList;
 
 public class bianliang {
