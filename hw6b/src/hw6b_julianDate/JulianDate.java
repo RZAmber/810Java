@@ -46,7 +46,8 @@ public class JulianDate {
   
 	private static String[] monthNames = {"Jan.", "Feb.", "Mar.", "Apr." ,"May.",
 			                  "Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."};
-    private static String[] DayofWeek={"Sun.","Mon.","Tues.","Wed.","Thur.","Fri.","Sat."};
+	//2000.1.1 is Sat, so let DayofWeek[0] is Sat.
+    private static String[] DayofWeek={"Sat.","Sun.","Mon.","Tues.","Wed.","Thur.","Fri."};
 	
     
 	public JulianDate(int year, int mon, int day) {
@@ -199,7 +200,7 @@ public class JulianDate {
     
     
 	public static void main(String[] args) {
-		JulianDate d1 = new JulianDate(2016, 2, 29,13,45,40);
+		JulianDate d1 = new JulianDate(2000, 2, 29,13,45,40);
 		double JDN1 = d1.JDN();
 		double JD1 = d1.JD(JDN1);
 		String week1 = JulianDate.getDayofWeeks((int)(JDN1%7));

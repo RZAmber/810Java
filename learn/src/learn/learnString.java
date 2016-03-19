@@ -1,5 +1,6 @@
 // learn String and to String
-
+//在一个class里面用toString ，return 一个语句，如“ "I AM CAR" + Speed +" !" "
+// 在另外一个class的main中调用的时候可以直接实例化之后输出，不必写很长的输出语句
 
 
 package learn;
