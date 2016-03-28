@@ -18,7 +18,7 @@ import java.awt.event.*;
 
 public class Calculator extends JFrame {		
 	private JTextField display;
-	
+
 	public Calculator(){
 		super("Calculator");
 		

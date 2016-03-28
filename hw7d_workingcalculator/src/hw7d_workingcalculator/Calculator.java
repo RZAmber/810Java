@@ -20,22 +20,20 @@ public class Calculator extends JFrame implements ActionListener{
 	boolean[] function = new boolean[4];
 	JButton[] buttons = new JButton[20];
 	String[] buttonsS = {
-			"AC","C","%","÷",
+			"AC","CE","%","÷",
 			"7","8","9","×",
 			"4","5","6","-",
 			"1","2","3","+",
 			"0",".","+/-","="};
-	
+//	StringBuilder operator = new StringBuilder("");//store operator
 	JTextArea display = new JTextArea(1,20);
 	JPanel p = new JPanel();
 	
-	Calculator(){
+	public Calculator(){
 		super("Calculator");
-
 		setSize(250,400);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);	
-		JPanel p = new JPanel();
 		p.setLayout(new GridLayout(5,4));	
 	
 		// inner class
@@ -56,37 +54,64 @@ public class Calculator extends JFrame implements ActionListener{
 		c.add(BorderLayout.CENTER, p);
 		setVisible(true);
 	}
-
+// button AC methond
 	public void clear(){
-		try{
 			display.setText("");
 			for(int i = 0; i<4 ;i++)
 				function[i]=false;
 			for(int i=0 ; i<2; i++)
 				temporary[i]=0;
-		}catch(NullPointerException e){
-		}
 	}
+//	button CE methond
 	public void delete(){
 		display.setText(display.getText().substring(0,display.getText().length()-1));
 	}
+//	button % method
 	public void perc(){
 		double i = Double.parseDouble(display.getText());//change String to double
 		display.setText(Double.toString(i/100));//change double to string
 	}
+//	button +/- method
 	public void getPosNeg(){
-		double x = Double.parseDouble(display.getText());
-		if(x!=0){
-			x=x*(-1);
-			display.setText(Double.toString(x));
+		StringBuilder s1 = new StringBuilder();
+		s1.append(display.getText());
+		if(display.getText().equals("")||display.getText().equals("0")){
+			s1.append("");
+			display.setText(s1.toString());
+		}else{
+			if(s1.toString().endsWith("-")){
+				s1.deleteCharAt(display.getText().length()-1);
+				display.setText(s1.toString());
+			}
+			else{
+				s1.insert(display.getText().length(),"-");				
+    			display.setText(s1.toString());
 		}
-
-		
+		}
 	}
+//	button = method
 	public void getresult(){
 		double result = 0;
-		
+		temporary[1]=testPN(display.getText());     
+		if(function[0]==true)
+			result = temporary[0]/temporary[1];
+		else if(function[1]==true)
+			result = temporary[0]*temporary[1];
+		else if(function[2]==true)
+			result = temporary[0]-temporary[1];
+		else if(function[3]==true)
+			result = temporary[0]+temporary[1];
+		if(result<0) 
+			display.setText(Double.toString(result).substring(1, Double.toString(result).length())+"-");
+		else
+			display.setText(Double.toString(result));
+		for(int i=0; i<4;i++)
+			function[i]=false;
+//        operator.setLength(0);
+//        operator.append("=");
 	}
+	
+	
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==buttons[4])
 		    display.append("7");	
@@ -109,29 +134,32 @@ public class Calculator extends JFrame implements ActionListener{
 		if(e.getSource()==buttons[16])
 			display.append("0");
 		if(e.getSource()==buttons[17])
-			display.append(".");
-
+			if(display.getText().contains("."))
+				display.append("");
+			else
+				display.append(".");
+		
 		if(e.getSource()==buttons[3]){
-			temporary[0]=Double.parseDouble(display.getText());
+			temporary[0]=testPN(display.getText());
 			//divide funtion[0]
 			function[0]=true;
 			display.setText("");
 		}
 		if(e.getSource()==buttons[7]){
-			temporary[0]=Double.parseDouble(display.getText());//transfer string to double
+			temporary[0]=testPN(display.getText());;
 			//multiply function[1]
 			function[1]=true;
 			display.setText("");
 		}
 		if(e.getSource()==buttons[11]){
-			temporary[0]=Double.parseDouble(display.getText());
-			//multiply function[1]
+			temporary[0]=testPN(display.getText());
+			//subtract function[2]
 			function[2]=true;
 			display.setText("");
 		}
 		if(e.getSource()==buttons[15]){
-			temporary[0]=Double.parseDouble(display.getText());
-			//multiply function[1]
+			temporary[0]=testPN(display.getText());
+			//add function[3]
 			function[3]=true;
 			display.setText("");
 		}
@@ -139,8 +167,17 @@ public class Calculator extends JFrame implements ActionListener{
 		if(e.getSource()==buttons[1]) delete();
 		if(e.getSource()==buttons[2]) perc();
 		if(e.getSource()==buttons[18]) getPosNeg();
-		if(e.getSource()==buttons[19]) getresult();
-		
+		if(e.getSource()==buttons[19]) getresult();	
+	}
+	public double testPN(String s2){
+		double temp;
+		if(s2.contains("-")){
+			String[] s20=s2.split("-",2);
+			temp=(Double.parseDouble(s20[0])*-1);
+			}else{
+			temp=Double.parseDouble(display.getText());
+			}
+		return temp;
 	}
 	
 	public static void main(String[] args) {

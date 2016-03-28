@@ -1,6 +1,6 @@
 package learn;
 
-public class learnInterface {
+public interface InterfaceName {
      //abstract funtions only(note,no word abstract)
 	public void smell();
 	public int getColor();
